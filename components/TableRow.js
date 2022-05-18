@@ -1,8 +1,8 @@
 import React from "react";
 
 const TableRow = ({ user, todo }) => {
-  const filterd = todo.filter((td) => td.userId === user.id);
-  console.log(filterd);
+  const user_name = user.filter((item) => item.id === todo.userId)[0];
+  console.log("user", user);
 
   return (
     <tr className=" px-8 py-4 hover:bg-gray-100 dark:hover:bg-gray-700">
@@ -19,23 +19,49 @@ const TableRow = ({ user, todo }) => {
 
         <td className="p-4 w-4 bg-purple-500" key={user.id}>
           <div className="bg-green-300 flex flex-col">
-            <p className="bg-red-400">{user.name}</p>
-            <p className="bg-pink-400">{user.company.name}</p>
+            <p className="bg-red-400">{user_name.name}</p>
+            <p className="bg-pink-400">{user_name.company.name}</p>
           </div>
         </td>
       </>
+      <td className="p-4  hidden sm:block bg-purple-100" key={user.id}>
+        <div className="bg-green-300 flex flex-col">
+          <p className="bg-red-400">{user_name.email}</p>
+          <p className="bg-pink-400">{user_name.phone}</p>
+        </div>
+      </td>
 
-      {filterd?.map((td) => {
-        return (
-          <td
-            className="bg-yellow-200 truncate block w-[100px] h-[50px]  "
-            key={td.id}
-          >
-            {td.title}
-          </td>
-        );
-      })}
-      <td>complete</td>
+      <td className="bg-yellow-200 p-4 w-4 " key={todo.id}>
+        {todo.title}
+      </td>
+
+      <td className="p-4 w-4">complete</td>
+      <td>
+        <div className="flex">
+          <span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+            </svg>
+          </span>
+          <span className="hidden sm:block">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path d="M19 9l-7 7-7-7" />
+            </svg>
+          </span>
+        </div>
+      </td>
     </tr>
   );
 };
