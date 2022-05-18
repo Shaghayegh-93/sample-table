@@ -3,8 +3,10 @@ import TableRow from "./TableRow";
 import Search from "./../public/svg/search-icon.svg";
 import TableHeadItem from "./TableHeadItem";
 const Table = ({ user, todo }) => {
+  // console.log("todo_state", todo_state);
   const theadData = [
     { path: "user", name: "User", icon: <Search /> },
+    { path: "Contact", name: "Contact", icon: <Search /> },
     { path: "To-Do", name: "To-Do", icon: <Search /> },
     { path: "Completed", name: "Completed" },
     { path: "Action", name: "Action", icon: <Search /> },
@@ -29,8 +31,8 @@ const Table = ({ user, todo }) => {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
-                {user?.map((item) => (
-                  <TableRow key={item} className="" todo={todo} user={item} />
+                {todo?.map((item) => (
+                  <TableRow key={item} className="" todo={item} user={user} />
                 ))}
               </tbody>
             </table>
