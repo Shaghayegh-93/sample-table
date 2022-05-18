@@ -1,12 +1,15 @@
 import Head from "next/head";
 import Image from "next/image";
 import Main from "../components/Main";
-// import styles from "../styles/Home.module.css";
+import { useState } from "react";
 
 export default function Home({ userData, todoeData }) {
-  // console.log(userData);
-  // console.log(todoeData);
+  // const [currentPage, setCurrentPage] = useState(1);
+  // const [itemsPerPage, setItemsPerPage] = useState(5);
+  // const indexOfLastItem = currentPage * itemsPerPage;
+  // const indexOfFirstItem = indexOfLastItem - itemsPerPage;
 
+  // const paginate = (pageNumber) => setCurrentPage(pageNumber);
   return (
     <>
       <Head>
@@ -30,4 +33,3 @@ Home.getInitialProps = async function (context) {
 
   return { userData, todoeData };
 };
-// console.log(userData);
