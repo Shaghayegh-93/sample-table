@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Search from "./../public/svg/search-icon.svg";
 import Arrow from "./../public/svg/arrow-bottom.svg";
-const Navbar = () => {
+const Navbar = ({ search, changeHandler, searchHandler }) => {
   return (
     <nav className=" flex items-center justify-between px-2 h-20 ">
       {/* leftSide */}
@@ -28,6 +28,9 @@ const Navbar = () => {
           <input
             className="outline-none w-[210px] h-[15px] focus:outline-none text-xs font-normal "
             placeholder="Search name,email or etc."
+            value={search}
+            onChange={changeHandler}
+            onKeyDown={searchHandler}
           />
         </div>
       </div>
