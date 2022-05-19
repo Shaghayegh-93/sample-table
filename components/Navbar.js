@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Search from "./../public/svg/search-icon.svg";
 import Arrow from "./../public/svg/arrow-bottom.svg";
-const Navbar = ({ search, changeHandler, searchHandler }) => {
+const Navbar = ({ search, changeHandler, searchHandler, filterdTodo }) => {
   return (
     <nav className=" flex items-center justify-between px-2 h-20 ">
       {/* leftSide */}

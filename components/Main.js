@@ -8,7 +8,8 @@ const Main = ({ todo, user }) => {
   const [todo_state, set_todo_state] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [search, setSearch] = useState("");
-  const [sortProducts, setSortProducts] = useState([]);
+  // const [sortProducts, setSortProducts] = useState([]);
+  // const[sort,setSort]=useState("des")
   const count_page = 10;
   const all_page = todo.length / count_page;
   console.log("todo", todo);
