@@ -1,16 +1,36 @@
 import React from "react";
 import TableRow from "./TableRow";
+import { useState, useEffect } from "react";
 import Search from "./../public/svg/search-icon.svg";
-import TableHeadItem from "./TableHeadItem";
-const Table = ({ user, todo }) => {
+// import ArrowUp from "./../public/svg/icon";
+// import ArrowDown from "./../public/svg/icon(1)";
+import TableHeadItem from "./../components/TableHeadItem";
+const Table = ({ user, todo, filterdTodo }) => {
   // console.log("todo_state", todo_state);
   const theadData = [
-    { path: "user", name: "User", icon: <Search /> },
+    { path: "user", name: "User" },
     { path: "Contact", name: "Contact", icon: <Search /> },
-    { path: "To-Do", name: "To-Do", icon: <Search /> },
+    {
+      path: "To-Do",
+      name: "To-Do",
+      icon: (
+        <>
+          {/* <ArrowUp onClick={() => console.log("yes")} /> <ArrowDown /> */}
+        </>
+      ),
+    },
     { path: "Completed", name: "Completed" },
-    { path: "Action", name: "Action", icon: <Search /> },
+    { path: "Action", name: "Action" },
   ];
+  const [sort, setSort] = useState("asc");
+  useEffect(() => {}, [sort]);
+  // const [sortPath, setSortPath] = useState();
+  // const [sortOrder, setSortOrder] = useState();
+  // console.log("sort", sort);
+
+  const sortHandler = (e) => {
+    setSort(e.target.value);
+  };
   return (
     <div className="flex flex-col bg-purple-900">
       <div className="overflow-x-auto shadow-md sm:rounded-lg">
@@ -27,11 +47,15 @@ const Table = ({ user, todo }) => {
                       ></input>
                     </div>
                   </th>
-                  <TableHeadItem data={theadData} />
+                  <TableHeadItem
+                    data={theadData}
+                    sortHandler={sortHandler}
+                    sort={sort}
+                  />
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
-                {todo?.map((item) => (
+                {filterdTodo?.map((item) => (
                   <TableRow key={item} className="" todo={item} user={user} />
                 ))}
               </tbody>
