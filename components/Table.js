@@ -18,7 +18,8 @@ const Table = ({ user, todo, filterdTodo }) => {
   ];
   const [sort, setSort] = useState("");
   // const [filterdData, setFilteredData] = useState([]);
-  // let filterdData = [...filterdTodo];
+  const [filterdTodo, setFilterdTodo] = useState([]);
+  let filterdSortData = [...filterdTodo];
   // console.log("filterdData", filterdData);
   const sortHandler = (e) => {
     setSort(e.target.value);
@@ -27,9 +28,13 @@ const Table = ({ user, todo, filterdTodo }) => {
   // const [order, setOrder] = useState("asc");
   useEffect(() => {
     if (sort === "asc") {
-      setFilteredData((data) =>
-        [...data].sort((a, b) => a.title.toLoweCase() - b.title.toLoweCase())
+      // setFilteredData((data) =>
+      //   [...data].sort((a, b) => a.title.toLoweCase() - b.title.toLoweCase())
+      // );
+      const soretedData = filterdSortData.sort(
+        (a, b) => b.title.toLoweCase() - a.title.toLoweCase()
       );
+      setFilterdTodo(soretedData);
     }
   }, [sort]);
   // const [sortPath, setSortPath] = useState();
