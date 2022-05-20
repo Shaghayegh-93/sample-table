@@ -1,6 +1,7 @@
 import React from "react";
 
 const TableHeadItem = ({ data, sortHandler, sort }) => {
+  console.log("sort", sort);
   return data.map((item) => {
     return item.icon ? (
       <th
@@ -10,8 +11,10 @@ const TableHeadItem = ({ data, sortHandler, sort }) => {
       >
         <>
           <select onChange={sortHandler}>
-            {/* <option value={asc}>asc</option>
-            <option value={desc}>desc</option> */}
+            <option onClick={() => sortClickHandler("asc")} value="asc">
+              asc
+            </option>
+            <option value="desc">desc</option>
           </select>
         </>
         {item.icon}

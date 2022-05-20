@@ -12,7 +12,7 @@ const Main = ({ todo, user }) => {
   // const[sort,setSort]=useState("des")
   const count_page = 10;
   const all_page = todo.length / count_page;
-  console.log("todo", todo);
+  // console.log("todo", todo);
 
   useEffect(() => {
     const next_page = currentPage * count_page;
@@ -25,7 +25,7 @@ const Main = ({ todo, user }) => {
       currentPage < all_page &&
       setCurrentPage(currentPage - 1);
 
-    console.log(currentPage);
+    // console.log(currentPage);
   };
   const nxetClickHandler = () => {
     currentPage < all_page && setCurrentPage(currentPage + 1);
@@ -39,8 +39,8 @@ const Main = ({ todo, user }) => {
   const filterdTodo = todo.filter((td) =>
     td.title.toLowerCase().includes(search)
   );
-  console.log("search", search);
-  console.log(todo.filter((t) => t.title.toLowerCase().includes("qu")));
+  // console.log("search", search);
+  // console.log(todo.filter((t) => t.title.toLowerCase().includes("qu")));
   const searchHandler = (e) => {
     if (e.key === "Enter") {
       //   setSearch(filterdTodo);

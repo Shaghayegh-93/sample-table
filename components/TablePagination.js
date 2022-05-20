@@ -11,13 +11,13 @@ const TablePagination = ({
   paginate,
   currentPage,
 }) => {
-  console.log("all", all_page);
+  // console.log("all", all_page);
 
   let navigate_num = [];
   for (let i = 1; i <= all_page; i++) {
     navigate_num.push(i);
   }
-  console.log("navigate: ", navigate_num);
+  // console.log("navigate: ", navigate_num);
   return (
     <div className=" px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
       <div className=" sm:flex-1 sm:flex sm:items-center sm:justify-between ">

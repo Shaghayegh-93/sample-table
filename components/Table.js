@@ -7,30 +7,35 @@ import Search from "./../public/svg/search-icon.svg";
 import TableHeadItem from "./../components/TableHeadItem";
 const Table = ({ user, todo, filterdTodo }) => {
   // console.log("todo_state", todo_state);
+  console.log("todo", todo);
+
   const theadData = [
     { path: "user", name: "User" },
-    { path: "Contact", name: "Contact", icon: <Search /> },
-    {
-      path: "To-Do",
-      name: "To-Do",
-      icon: (
-        <>
-          {/* <ArrowUp onClick={() => console.log("yes")} /> <ArrowDown /> */}
-        </>
-      ),
-    },
+    { path: "Contact", name: "Contact" },
+    { path: "To-Do", name: "To-Do", icon: <Search /> },
     { path: "Completed", name: "Completed" },
     { path: "Action", name: "Action" },
   ];
-  const [sort, setSort] = useState("asc");
-  useEffect(() => {}, [sort]);
+  const [sort, setSort] = useState("");
+  // const [filterdData, setFilteredData] = useState([]);
+  // let filterdData = [...filterdTodo];
+  // console.log("filterdData", filterdData);
+  const sortHandler = (e) => {
+    setSort(e.target.value);
+  };
+  // const [sortData, setSortData] = useState("");
+  // const [order, setOrder] = useState("asc");
+  useEffect(() => {
+    if (sort === "asc") {
+      setFilteredData((data) =>
+        [...data].sort((a, b) => a.title.toLoweCase() - b.title.toLoweCase())
+      );
+    }
+  }, [sort]);
   // const [sortPath, setSortPath] = useState();
   // const [sortOrder, setSortOrder] = useState();
   // console.log("sort", sort);
 
-  const sortHandler = (e) => {
-    setSort(e.target.value);
-  };
   return (
     <div className="flex flex-col bg-purple-900">
       <div className="overflow-x-auto shadow-md sm:rounded-lg">

@@ -2,7 +2,7 @@ import React from "react";
 
 const TableRow = ({ user, todo }) => {
   const user_name = user.filter((item) => item.id === todo.userId)[0];
-  console.log("user", user);
+  // console.log("user", user);
 
   return (
     <tr className=" px-8 py-4 hover:bg-gray-100 dark:hover:bg-gray-700">
