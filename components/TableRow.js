@@ -5,7 +5,7 @@ const TableRow = ({ user, todo }) => {
   // console.log("user", user);
 
   return (
-    <tr className=" px-8 py-4 hover:bg-gray-100 dark:hover:bg-gray-700">
+    <tr className="  px-8 py-4 hover:bg-gray-100 dark:hover:bg-gray-700 ">
       <>
         <td className="p-4 w-4">
           <div className="flex items-center">
@@ -17,27 +17,27 @@ const TableRow = ({ user, todo }) => {
           </div>
         </td>
 
-        <td className="p-4 w-4 bg-purple-500" key={user.id}>
-          <div className="bg-green-300 flex flex-col">
-            <p className="bg-red-400">{user_name.name}</p>
-            <p className="bg-pink-400">{user_name.company.name}</p>
+        <td className="p-4 w-4 " key={user.id}>
+          <div className=" flex flex-col whitespace-nowrap">
+            <p className="">{user_name.name}</p>
+            <p className="">{user_name.company.name}</p>
           </div>
         </td>
       </>
       <td className="p-4  hidden sm:block bg-purple-100" key={user.id}>
-        <div className="bg-green-300 flex flex-col">
-          <p className="bg-red-400">{user_name.email}</p>
-          <p className="bg-pink-400">{user_name.phone}</p>
+        <div className=" flex flex-col">
+          <p className="">{user_name.email}</p>
+          <p className="">{user_name.phone}</p>
         </div>
       </td>
 
-      <td className="bg-yellow-200 p-4 w-4 " key={todo.id}>
+      <td className=" p-4 w-4" key={todo.id}>
         {todo.title}
       </td>
 
-      <td className="p-4 w-4">complete</td>
+      <td className="p-4 w-4 ">complete</td>
       <td>
-        <div className="flex">
+        <div className="flex items-center justify-center">
           <span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
