@@ -6,14 +6,12 @@ import { useState, useEffect } from "react";
 
 const Main = ({ todo, user }) => {
   const [todo_state, set_todo_state] = useState([]);
-  
+  console.log("todo_state:", todo_state);
+
   const [currentPage, setCurrentPage] = useState(1);
   const [search, setSearch] = useState("");
-  // const [sortProducts, setSortProducts] = useState([]);
-  // const[sort,setSort]=useState("des")
   const count_page = 10;
   const all_page = todo.length / count_page;
-  // console.log("todo", todo);
 
   useEffect(() => {
     const next_page = currentPage * count_page;
@@ -25,42 +23,54 @@ const Main = ({ todo, user }) => {
     currentPage > 1 &&
       currentPage < all_page &&
       setCurrentPage(currentPage - 1);
-
-    // console.log(currentPage);
   };
   const nxetClickHandler = () => {
     currentPage < all_page && setCurrentPage(currentPage + 1);
   };
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  let filterdTodo = todo.filter((td) =>
+    td.title.toLowerCase().includes(search)
+  );
+  console.log("filterd-todo:", filterdTodo);
+  console.log("search", search);
+  console.log(
+    "searchhhhhhhhhh",
+    todo.filter((t) => t.title.toLowerCase().includes("quis"))
+  );
   const changeHandler = (e) => {
     e.preventDefault();
     setSearch(e.target.value);
-    // setSearch("");
   };
-  const filterdTodo = todo.filter((td) =>
-    td.title.toLowerCase().includes(search)
-  );
-  // console.log("search", search);
-  // console.log(todo.filter((t) => t.title.toLowerCase().includes("qu")));
   const searchHandler = (e) => {
     if (e.key === "Enter") {
-      //   setSearch(filterdTodo);
+      set_todo_state(filterdTodo);
+      setSearch("");
+
+      // set_todo_state(search);
       // setSearch("");
       // }
     }
   };
 
   return (
-    <div className="bg-white m-auto mt-7 rounded-xl  mx-auto">
+    <div className="bg-white m-auto mt-7 rounded-xl px-4  ">
       <Navbar
         search={search}
         changeHandler={changeHandler}
         searchHandler={searchHandler}
         filterdTodo={filterdTodo}
+        todo_state={todo_state}
       />
-      <Table todo={todo_state} user={user} filterdTodo={filterdTodo} />
+      <Table
+        todo={filterdTodo}
+        user={user}
+        filterdTodo={filterdTodo}
+        todo_state={todo_state}
+      />
       <TablePagination
-        todo={todo_state}
+        // filterdTodo={filterdTodo}
+        todo_state={todo_state}
         user={user}
         prevClickHandler={prevClickHandler}
         nxetClickHandler={nxetClickHandler}
