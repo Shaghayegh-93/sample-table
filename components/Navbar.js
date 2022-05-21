@@ -2,14 +2,14 @@ import React from "react";
 import Image from "next/image";
 import Search from "./../public/svg/search-icon.svg";
 import Arrow from "./../public/svg/arrow-bottom.svg";
-const Navbar = ({ search, changeHandler, searchHandler, filterdTodo }) => {
+const Navbar = ({ search, changeHandler, searchHandler, todo_state }) => {
   return (
     <nav className=" flex items-center justify-between px-2 h-20 ">
       {/* leftSide */}
-      <div className="flex items-center justify-between font-normal text-xs">
+      <div className="flex items-center justify-between font-normal  text-xs">
         <span className="w-8 h-[15px] top-[10px]  mr-2">Show</span>
         <div className=" border-[1px] flex items-center justify-between w-[72px] h-9  rounded-lg py-2 px-3 gap-x-2 borde-[#E0E7ED]">
-          <span className="w-6">10</span>
+          <span className="w-6">{todo_state.length}</span>
           <span className="  ">
             <Arrow className="w-2 h-1" />
           </span>
