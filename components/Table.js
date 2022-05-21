@@ -1,12 +1,8 @@
 import React from "react";
 import TableRow from "./TableRow";
 import { useState, useEffect } from "react";
-import Search from "./../public/svg/search-icon.svg";
-// import ArrowUp from "./../public/svg/icon";
-// import ArrowDown from "./../public/svg/icon(1)";
 import TableHeadItem from "./../components/TableHeadItem";
 const Table = ({ user, todo, filterdTodo, todo_state }) => {
-  // console.log("todo_state", todo_state);
   console.log("todo", todo);
 
   const theadData = [
