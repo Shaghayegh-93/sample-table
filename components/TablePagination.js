@@ -10,26 +10,46 @@ const TablePagination = ({
   all_page,
   paginate,
   currentPage,
+  todo_state,
+  filterdTodo,
 }) => {
-  // console.log("all", all_page);
-
   let navigate_num = [];
   for (let i = 1; i <= all_page; i++) {
     navigate_num.push(i);
   }
-  // console.log("navigate: ", navigate_num);
+  console.log("navigate_num:", navigate_num);
+  console.log("todo:", todo);
+  console.log("filterd-todo:", filterdTodo);
+  console.log("todo-state:", todo_state);
+  console.log("currentPage:", currentPage);
+
   return (
-    <div className=" px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
-      <div className=" sm:flex-1 sm:flex sm:items-center sm:justify-between ">
-        <div>
+    <div className="bg-pink-400   sm:px-6">
+      <div className=" bg-yellow-50   ">
+        <div className="flex flex-col items-center justify-center py-4 bg-purple-50">
+          <div className="pb-5 bg-green-200">
+            <p className="text-sm ">
+              Showing
+              <span className="font-medium">{currentPage * 10}</span>
+              to
+              <span className="font-medium">
+                {currentPage >= 20 ? todo.length : (currentPage + 1) * 10}
+              </span>
+              of
+              <span className="font-medium">
+                {currentPage >= 20 ? "" : todo.length}
+              </span>
+              results
+            </p>
+          </div>
           <nav
-            className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px"
+            className="p-2 gap-3 bg-red-200 flex items-center justify-center"
             aria-label="Pagination"
           >
             <a
               onClick={() => prevClickHandler()}
               href="#"
-              className="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+              className="relative inline-flex items-center justify-center bg-blue-200 rounded-lg text-sm font-medium py-1 px-[10px] "
             >
               <span className="sr-only">Previous</span>
 
@@ -44,17 +64,16 @@ const TablePagination = ({
               </svg>
             </a>
             <a
-              // onClick={() => paginate(number)}
               href="#"
               aria-current="page"
-              className="z-10 bg-indigo-50 border-indigo-500 text-indigo-600 relative inline-flex items-center   text-sm font-medium"
+              className=" relative inline-flex items-center   text-sm font-medium"
             >
-              <ul className="flex items-center">
+              <ul className="flex items-center gap-[10px]">
                 {navigate_num.slice(0, 3).map((number, id) => (
                   <li
                     onClick={() => paginate(number)}
-                    className={`p-1 border ${
-                      id === currentPage && "bg-slate-900"
+                    className={`py-1 px-[10px] rounded-lg gap-[10px] bg-[#F1F7FF] ${
+                      id === currentPage - 1 && "bg-[#1ABBB9]"
                     }`}
                     key={number}
                   >
@@ -68,9 +87,8 @@ const TablePagination = ({
 
             <a
               onClick={() => nxetClickHandler()}
-              // onClick={() => setCurrentPage((prev) => prev + 1)}
               href="#"
-              className="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+              className="relative inline-flex items-center justify-center bg-blue-200 rounded-lg  text-sm font-medium py-1 px-[10px]"
             >
               <span className="sr-only">Next</span>
 
