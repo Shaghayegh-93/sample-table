@@ -32,7 +32,7 @@ const Main = ({ todo, user }) => {
   let filterdTodo = todo.filter((td) =>
     td.title.toLowerCase().includes(search)
   );
-  console.log("filterd-todo:", filterdTodo);
+
   console.log("search", search);
   console.log(
     "searchhhhhhhhhh",
@@ -69,7 +69,7 @@ const Main = ({ todo, user }) => {
         todo_state={todo_state}
       />
       <TablePagination
-        // filterdTodo={filterdTodo}
+        filterdTodo={filterdTodo}
         todo_state={todo_state}
         user={user}
         prevClickHandler={prevClickHandler}
@@ -77,6 +77,7 @@ const Main = ({ todo, user }) => {
         all_page={all_page}
         paginate={paginate}
         currentPage={currentPage}
+        todo={todo}
       />
     </div>
   );
