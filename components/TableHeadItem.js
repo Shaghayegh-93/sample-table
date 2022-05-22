@@ -5,7 +5,7 @@ const TableHeadItem = ({ data, sort, sortHandler }) => {
     return item.icon ? (
       <th
         scope="col"
-        className="text-left  py-3 px-6 text-xs font-medium tracking-wider  text-gray-700 uppercase "
+        className="text-center  py-3 px-6 text-xs font-medium tracking-wider  text-gray-700 uppercase "
         key={item.path}
       >
         <div className="flex items-center justify-around">
@@ -23,7 +23,7 @@ const TableHeadItem = ({ data, sort, sortHandler }) => {
         scope="col"
         className={`${
           item.name === "Contact" ? "hidden md:block  " : ""
-        }   py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase `}
+        }   py-3 px-6 text-xs font-medium tracking-wider text-center text-gray-700 uppercase `}
         key={item.path}
       >
         {item.name}
