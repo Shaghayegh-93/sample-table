@@ -46,15 +46,11 @@ const Main = ({ todo, user }) => {
     if (e.key === "Enter") {
       set_todo_state(filterdTodo);
       setSearch("");
-
-      // set_todo_state(search);
-      // setSearch("");
-      // }
     }
   };
 
   return (
-    <div className="bg-white m-auto mt-7 rounded-xl px-4  ">
+    <div className="bg-white m-auto mt-7 rounded-xl px-4  xl:w-[1258px] ">
       <Navbar
         search={search}
         changeHandler={changeHandler}
