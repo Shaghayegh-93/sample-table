@@ -1,55 +1,45 @@
 import React from "react";
 
-// import { useState, useEffect } from "react";
-
 const TablePagination = ({
-  user,
   todo,
   prevClickHandler,
   nxetClickHandler,
   all_page,
   paginate,
   currentPage,
-  todo_state,
-  filterdTodo,
 }) => {
   let navigate_num = [];
   for (let i = 1; i <= all_page; i++) {
     navigate_num.push(i);
   }
-  console.log("navigate_num:", navigate_num);
-  console.log("todo:", todo);
-  console.log("filterd-todo:", filterdTodo);
-  console.log("todo-state:", todo_state);
-  console.log("currentPage:", currentPage);
 
   return (
-    <div className="bg-pink-400   sm:px-6">
-      <div className=" bg-yellow-50   ">
-        <div className="flex flex-col items-center justify-center py-4 bg-purple-50">
-          <div className="pb-5 bg-green-200">
-            <p className="text-sm ">
+    <div className="  sm:px-6">
+      <div className="   ">
+        <div className="flex flex-col items-center justify-center py-4 md:justify-between md:flex-row  ">
+          <div className="pb-5  ">
+            <p className="text-sm  ">
               Showing
-              <span className="font-medium">{currentPage * 10}</span>
+              <span className="font-medium px-1">{currentPage * 10}</span>
               to
-              <span className="font-medium">
+              <span className="font-medium px-1">
                 {currentPage >= 20 ? todo.length : (currentPage + 1) * 10}
               </span>
               of
-              <span className="font-medium">
+              <span className="font-medium px-1">
                 {currentPage >= 20 ? "" : todo.length}
               </span>
-              results
+              entries
             </p>
           </div>
           <nav
-            className="p-2 gap-3 bg-red-200 flex items-center justify-center"
+            className="p-2 gap-3  flex items-center justify-center"
             aria-label="Pagination"
           >
             <a
               onClick={() => prevClickHandler()}
               href="#"
-              className="relative inline-flex items-center justify-center bg-blue-200 rounded-lg text-sm font-medium py-1 px-[10px] "
+              className="relative inline-flex items-center justify-center bg-[#F1F7FF] rounded-lg text-sm font-medium py-1 px-[10px] "
             >
               <span className="sr-only">Previous</span>
 
@@ -81,14 +71,19 @@ const TablePagination = ({
                   </li>
                 ))}
                 <li>...</li>
-                <li onClick={() => paginate(all_page)}>{all_page}</li>
+                <li
+                  className="py-1 px-[10px] rounded-lg gap-[10px] bg-[#F1F7FF]"
+                  onClick={() => paginate(all_page)}
+                >
+                  {all_page}
+                </li>
               </ul>
             </a>
 
             <a
               onClick={() => nxetClickHandler()}
               href="#"
-              className="relative inline-flex items-center justify-center bg-blue-200 rounded-lg  text-sm font-medium py-1 px-[10px]"
+              className="relative inline-flex items-center justify-center bg-[#F1F7FF] rounded-lg  text-sm font-medium py-1 px-[10px]"
             >
               <span className="sr-only">Next</span>
 
