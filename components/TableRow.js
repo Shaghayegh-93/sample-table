@@ -2,49 +2,65 @@ import React from "react";
 
 const TableRow = ({ user, todo }) => {
   const user_name = user.filter((item) => item.id === todo.userId)[0];
-  // console.log("user", user);
+  console.log("username:", user_name);
+  console.log("usr:", user);
 
   return (
-    <tr className="  px-8 py-4 hover:bg-gray-100 dark:hover:bg-gray-700 ">
+    <tr className="  px-8 py-4  shadow-[0_0_-1px_0_ rgba(224, 231, 237, 1)] ">
       <>
-        <td className="p-4 w-4">
-          <div className="flex items-center">
+        <td className="px-3 py-4 gap-2 w-4 text-center">
+          <div className="flex items-center justify-center">
             <input
-              id="checkbox-table-1"
+              id="checkbox"
               type="checkbox"
-              className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+              className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 "
             ></input>
+            <label htmlFor="checkbox" className="sr-only">
+              checkbox
+            </label>
           </div>
         </td>
 
-        <td className="p-4 w-4 " key={user.id}>
-          <div className=" flex flex-col whitespace-nowrap">
-            <p className="">{user_name.name}</p>
-            <p className="">{user_name.company.name}</p>
+        <td className="  p-4 gap-2 w-[160px] h-[68px] text-left " key={user.id}>
+          <div className=" flex flex-col whitespace-nowrap items-center px-3 py-4  ">
+            <p className="  text-[#828282] font-semibold text-xs leading-[150%]">
+              {user_name.name}
+            </p>
+            <p className=" font-normal text-xs text-[#3333]">
+              {user_name.company.name}
+            </p>
           </div>
         </td>
       </>
-      <td className="p-4  hidden sm:block bg-purple-100" key={user.id}>
-        <div className=" flex flex-col">
-          <p className="">{user_name.email}</p>
+      <td
+        className=" p-4 gap-2   hidden sm:block  text-left  w-[160px] h-[68px]  "
+        key={user.id}
+      >
+        <div className="px-3 py-4 flex flex-col items-center whitespace-nowrap text-sm font-normal  text-[#828282] ">
+          <p className="leading-[18px]">{user_name.email}</p>
           <p className="">{user_name.phone}</p>
         </div>
       </td>
 
-      <td className=" p-4 w-4" key={todo.id}>
+      <td
+        className=" p-4  text-left text-[#828282] w-[160px] h-[68px] font-normal text-xs"
+        key={todo.id}
+      >
         {todo.title}
       </td>
 
-      <td className="p-4 w-4 ">complete</td>
+      <td className="p-4  text-center text-[#18AB56] w-[82px] h-[68px] ">
+        <span className="bg-[#F0FFF8] py-2 px-3 rounded-lg">complete</span>
+      </td>
       <td>
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center w-20 h-[68px] gap-6 ">
           <span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
+              className="h-6  w-6"
+              fill="#828282"
               viewBox="0 0 24 24"
-              stroke="currentColor"
+              stroke="#828282 "
             >
               <path d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
             </svg>
@@ -53,9 +69,9 @@ const TableRow = ({ user, todo }) => {
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-6 w-6"
-              fill="none"
+              fill="#828282"
               viewBox="0 0 24 24"
-              stroke="currentColor"
+              stroke="#828282"
             >
               <path d="M19 9l-7 7-7-7" />
             </svg>
