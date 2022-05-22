@@ -6,7 +6,6 @@ import { useState, useEffect } from "react";
 
 const Main = ({ todo, user }) => {
   const [todo_state, set_todo_state] = useState([]);
-  console.log("todo_state:", todo_state);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [search, setSearch] = useState("");
@@ -33,11 +32,6 @@ const Main = ({ todo, user }) => {
     td.title.toLowerCase().includes(search)
   );
 
-  console.log("search", search);
-  console.log(
-    "searchhhhhhhhhh",
-    todo.filter((t) => t.title.toLowerCase().includes("quis"))
-  );
   const changeHandler = (e) => {
     e.preventDefault();
     setSearch(e.target.value);
