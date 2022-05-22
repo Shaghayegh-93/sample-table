@@ -4,7 +4,7 @@ import Search from "./../public/svg/search-icon.svg";
 import Arrow from "./../public/svg/arrow-bottom.svg";
 const Navbar = ({ search, changeHandler, searchHandler, todo_state }) => {
   return (
-    <nav className=" flex items-center justify-between px-2 h-20 ">
+    <nav className=" flex items-center justify-between px-2 h-20 text-xs font-normal  ">
       {/* leftSide */}
       <div className="flex items-center justify-between font-normal  text-xs">
         <span className="w-8 h-[15px] top-[10px]  mr-2">Show</span>
@@ -26,7 +26,7 @@ const Navbar = ({ search, changeHandler, searchHandler, todo_state }) => {
             <Search width={12} height={12} />
           </span>
           <input
-            className="outline-none w-[210px] h-[15px] focus:outline-none text-xs font-normal "
+            className="outline-none w-[210px] h-[15px] focus:outline-none text-xs font-normal text-[#BDBDBD] "
             placeholder="Search name,email or etc."
             value={search}
             onChange={changeHandler}
