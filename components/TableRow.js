@@ -36,7 +36,7 @@ const TableRow = ({ user, todo }) => {
         className=" p-4 gap-2   hidden sm:block  text-left  w-[160px] h-[68px]  "
         key={user.id}
       >
-        <div className="px-3 py-4 flex flex-col items-center whitespace-nowrap text-sm font-normal  text-[#828282] ">
+        <div className="px-3 py-4 flex flex-col items-center whitespace-nowrap  text-sm font-normal  text-[#828282] ">
           <p className="leading-[18px]">{user_name.email}</p>
           <p className="">{user_name.phone}</p>
         </div>
