@@ -6,8 +6,8 @@ import ArrowUp from "./../public/svg/icon (2).svg";
 import ArrowDown from "./../public/svg/icon (3).svg";
 const Table = ({ user, todo, filterdTodo, todo_state }) => {
   const [sort_data, set_sort_data] = useState("asc");
-
   const [data, set_data] = useState([]);
+
   let filterdSortData = [...filterdTodo];
 
   const compareFn = (a, b) => {
@@ -27,7 +27,7 @@ const Table = ({ user, todo, filterdTodo, todo_state }) => {
     set_data(soretedData);
     console.log("sort_data: ", soretedData);
   };
-  console.log("sort:", data);
+
   const theadData = [
     { path: "user", name: "User" },
     { path: "Contact", name: "Contact" },
@@ -37,11 +37,11 @@ const Table = ({ user, todo, filterdTodo, todo_state }) => {
       icon: (
         <div className="flex flex-col ">
           <ArrowUp
-            className="cursor-pointer "
+            className={`cursor-pointer ${sort_data === "asc" && "svgColor"}`}
             onClick={() => sortHandler("asc")}
           />
           <ArrowDown
-            className="cursor-pointer"
+            className={`cursor-pointer ${sort_data === "desc" && "svgColor"}`}
             onClick={() => sortHandler("desc")}
           />
         </div>
@@ -51,9 +51,6 @@ const Table = ({ user, todo, filterdTodo, todo_state }) => {
     { path: "Action", name: "Action" },
   ];
 
-  // console.log("data", data);
-
-  // console.log("data: ", data);
   return (
     <div className="flex flex-col  rounded-2xl pb-6">
       <div className="overflow-x-auto sm:rounded-lg rounded-2xl border border-[#E0E7ED] 	">
