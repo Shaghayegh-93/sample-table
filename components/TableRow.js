@@ -2,8 +2,8 @@ import React from "react";
 
 const TableRow = ({ user, todo }) => {
   const user_name = user.filter((item) => item.id === todo.userId)[0];
-  console.log("username:", user_name);
-  console.log("usr:", user);
+  // console.log("username:", user_name);
+  // console.log("usr:", user);
 
   return (
     <tr className="  px-8 py-4  shadow-[0_0_-1px_0_ rgba(224, 231, 237, 1)] ">
