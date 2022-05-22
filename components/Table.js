@@ -1,21 +1,13 @@
 import React from "react";
 import TableRow from "./TableRow";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import TableHeadItem from "./../components/TableHeadItem";
+import ArrowUp from "./../public/svg/icon (2).svg";
+import ArrowDown from "./../public/svg/icon (3).svg";
 const Table = ({ user, todo, filterdTodo, todo_state }) => {
-  const theadData = [
-    { path: "user", name: "User" },
-    { path: "Contact", name: "Contact" },
-    { path: "To-Do", name: "To-Do" },
-    { path: "Completed", name: "Completed" },
-    { path: "Action", name: "Action" },
-  ];
-
   const [sort_data, set_sort_data] = useState("asc");
 
   const [data, set_data] = useState([]);
-  console.log("data", data);
-
   let filterdSortData = [...filterdTodo];
 
   const compareFn = (a, b) => {
@@ -23,16 +15,45 @@ const Table = ({ user, todo, filterdTodo, todo_state }) => {
     else if (a.title < b.title) return -1;
     else return 0;
   };
-
-  const sortHandler = (e) => {
-    const type = e.target.value;
+  console.log("sorttype:", sort_data);
+  const sortHandler = (type) => {
     set_sort_data(type);
-    const soretedData = filterdSortData.sort((a, b) => compareFn(a, b));
-    console.log("sort_daya: ", soretedData);
+    let soretedData = [];
+    if (type === "asc") {
+      soretedData = filterdSortData.sort((a, b) => compareFn(a, b));
+    } else {
+      soretedData = filterdSortData.sort((a, b) => compareFn(a, b)).reverse();
+    }
     set_data(soretedData);
+    console.log("sort_data: ", soretedData);
   };
+  console.log("sort:", data);
+  const theadData = [
+    { path: "user", name: "User" },
+    { path: "Contact", name: "Contact" },
+    {
+      path: "To-Do",
+      name: "To-Do",
+      icon: (
+        <div className="flex flex-col ">
+          <ArrowUp
+            className="cursor-pointer "
+            onClick={() => sortHandler("asc")}
+          />
+          <ArrowDown
+            className="cursor-pointer"
+            onClick={() => sortHandler("desc")}
+          />
+        </div>
+      ),
+    },
+    { path: "Completed", name: "Completed" },
+    { path: "Action", name: "Action" },
+  ];
 
-  console.log("data: ", data);
+  // console.log("data", data);
+
+  // console.log("data: ", data);
   return (
     <div className="flex flex-col  rounded-2xl pb-6">
       <div className="overflow-x-auto sm:rounded-lg rounded-2xl border border-[#E0E7ED] 	">
