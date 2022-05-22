@@ -3,8 +3,6 @@ import TableRow from "./TableRow";
 import { useState, useEffect } from "react";
 import TableHeadItem from "./../components/TableHeadItem";
 const Table = ({ user, todo, filterdTodo, todo_state }) => {
-  console.log("todo", todo);
-
   const theadData = [
     { path: "user", name: "User" },
     { path: "Contact", name: "Contact" },
@@ -36,19 +34,22 @@ const Table = ({ user, todo, filterdTodo, todo_state }) => {
 
   console.log("data: ", data);
   return (
-    <div className="flex flex-col  rounded-2xl	 pb-6">
-      <div className="overflow-x-auto sm:rounded-lg rounded-2xl border border-[#E0E7ED]">
+    <div className="flex flex-col  rounded-2xl pb-6">
+      <div className="overflow-x-auto sm:rounded-lg rounded-2xl border border-[#E0E7ED] 	">
         <div className="inline-block min-w-full align-middle ">
           <div className="  overflow-hidden ">
-            <table className="   p-4 min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-700">
-              <thead className="bg-gray-100 	 ">
-                <tr className="		">
-                  <th scope="col" className="p-4 rounded-tl-2xl	">
-                    <div className="flex items-center">
+            <table className="   p-4 w-full divide-y divide-gray-200 table-fixed dark:divide-gray-700">
+              <thead className="bg-gray-100 ">
+                <tr className="">
+                  <th scope="col" className="p-4 ">
+                    <div className="flex items-center justify-center">
                       <input
                         type="checkbox"
                         className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                       ></input>
+                      <label htmlFor="checkbox" className="sr-only">
+                        checkbox
+                      </label>
                     </div>
                   </th>
                   <TableHeadItem
