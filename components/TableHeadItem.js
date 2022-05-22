@@ -1,6 +1,6 @@
 import React from "react";
 
-const TableHeadItem = ({ data, sortHandler, sort }) => {
+const TableHeadItem = ({ data, sort, sortHandler }) => {
   return data.map((item) => {
     return item.icon ? (
       <th
@@ -8,14 +8,15 @@ const TableHeadItem = ({ data, sortHandler, sort }) => {
         className="text-left  py-3 px-6 text-xs font-medium tracking-wider  text-gray-700 uppercase "
         key={item.path}
       >
-        <>
-          <select onChange={() => sortHandler()}>
+        <div className="flex items-center justify-around">
+          {/* <select onChange={() => sortHandler()}>
             <option value="asc">asc</option>
             <option value="desc">desc</option>
-          </select>
-        </>
-        {item.icon}
-        {item.name}
+          </select> */}
+          <div onChange={() => sortHandler()}> {item.icon}</div>
+
+          {item.name}
+        </div>
       </th>
     ) : (
       <th
