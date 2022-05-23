@@ -4,7 +4,7 @@ import Union from "../public/svg/Union.svg";
 
 const TableRow = ({ user, todo }) => {
   const user_name = user.filter((item) => item.id === todo.userId)[0];
-  console.log("username:", user_name);
+  // console.log("username:", user_name);
   // console.log("usr:", user);
 
   return (

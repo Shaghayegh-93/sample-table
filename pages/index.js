@@ -1,7 +1,5 @@
 import Head from "next/head";
-import Image from "next/image";
 import Main from "../components/Main";
-import { useState } from "react";
 
 export default function Home({ userData, todoeData }) {
   return (

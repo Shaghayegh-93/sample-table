@@ -2,16 +2,15 @@ import React from "react";
 
 const TablePagination = ({
   todo,
-  prevClickHandler,
-  nxetClickHandler,
   all_page,
-  paginate,
   currentPage,
+  set_paginate_handler,
 }) => {
   let navigate_num = [];
   for (let i = 1; i <= all_page; i++) {
     navigate_num.push(i);
   }
+  console.log("navigate", navigate_num[3]);
 
   return (
     <div className="  sm:px-6">
@@ -37,7 +36,7 @@ const TablePagination = ({
             aria-label="Pagination"
           >
             <a
-              onClick={() => prevClickHandler()}
+              onClick={() => set_paginate_handler("prev")}
               href="#"
               className="relative inline-flex items-center justify-center bg-[#F1F7FF] rounded-lg text-sm font-medium py-1 px-[10px] "
             >
@@ -61,7 +60,7 @@ const TablePagination = ({
               <ul className="flex items-center gap-[10px]">
                 {navigate_num.slice(0, 3).map((number, id) => (
                   <li
-                    onClick={() => paginate(number)}
+                    onClick={() => set_paginate_handler(number)}
                     className={`py-1 px-[10px] rounded-lg gap-[10px] bg-[#F1F7FF] ${
                       id === currentPage - 1 && "bg-[#1ABBB9]"
                     }`}
@@ -73,15 +72,15 @@ const TablePagination = ({
                 <li>...</li>
                 <li
                   className="py-1 px-[10px] rounded-lg gap-[10px] bg-[#F1F7FF]"
-                  onClick={() => paginate(all_page)}
+                  onClick={() => set_paginate_handler(all_page)}
                 >
-                  {all_page}
+                  {all_page === navigate_num[2] ? navigate_num[2] : ""}
                 </li>
               </ul>
             </a>
 
             <a
-              onClick={() => nxetClickHandler()}
+              onClick={() => set_paginate_handler("next")}
               href="#"
               className="relative inline-flex items-center justify-center bg-[#F1F7FF] rounded-lg  text-sm font-medium py-1 px-[10px]"
             >
