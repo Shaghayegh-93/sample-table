@@ -1,8 +1,10 @@
 import React from "react";
+import Vector from "../public/svg/Vector.svg";
+import Union from "../public/svg/Union.svg";
 
 const TableRow = ({ user, todo }) => {
   const user_name = user.filter((item) => item.id === todo.userId)[0];
-  // console.log("username:", user_name);
+  console.log("username:", user_name);
   // console.log("usr:", user);
 
   return (
@@ -53,28 +55,12 @@ const TableRow = ({ user, todo }) => {
         <span className="bg-[#F0FFF8] py-2 px-3 rounded-lg">complete</span>
       </td>
       <td>
-        <div className="flex items-center justify-center w-20 h-[68px] gap-6 ">
-          <span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6  w-6"
-              fill="#828282"
-              viewBox="0 0 24 24"
-              stroke="#828282 "
-            >
-              <path d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
-            </svg>
-          </span>
+        <div className="flex items-center justify-center gap-6 ">
           <span className="hidden sm:block">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="#828282"
-              viewBox="0 0 24 24"
-              stroke="#828282"
-            >
-              <path d="M19 9l-7 7-7-7" />
-            </svg>
+            <Union></Union>
+          </span>
+          <span>
+            <Vector></Vector>
           </span>
         </div>
       </td>
