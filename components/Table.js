@@ -2,8 +2,8 @@ import React from "react";
 import TableRow from "./TableRow";
 import { useState } from "react";
 import TableHeadItem from "./../components/TableHeadItem";
-import ArrowUp from "./../public/svg/icon (2).svg";
-import ArrowDown from "./../public/svg/icon (3).svg";
+import ArrowUp from "../public/svg/ArrowUp.svg";
+import ArrowDown from "../public/svg/ArrowDown.svg";
 const Table = ({ user, todo, filterdTodo, todo_state }) => {
   const [sort_data, set_sort_data] = useState("asc");
   const [data, set_data] = useState([]);
