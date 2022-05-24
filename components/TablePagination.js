@@ -1,4 +1,6 @@
 import React from "react";
+import VectorLeft from "../public/svg/VectorLeft.svg";
+import VectorRight from "../public/svg/VectorRight.svg";
 
 const TablePagination = ({
   todo,
@@ -8,8 +10,6 @@ const TablePagination = ({
   navigate_num,
   arrayOfCurrentPages,
 }) => {
-  // console.log("navigate", navigate_num[3]);
-
   return (
     <div className="  sm:px-6">
       <div className="   ">
@@ -46,15 +46,7 @@ const TablePagination = ({
             >
               <span className="sr-only">Previous</span>
 
-              <svg
-                className="h-5 w-5"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                aria-hidden="true"
-              >
-                <path d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" />
-              </svg>
+              <VectorLeft />
             </a>
             <a
               href="#"
@@ -73,13 +65,6 @@ const TablePagination = ({
                     {numberOfPage}
                   </li>
                 ))}
-                {/* <li>...</li>
-                <li
-                  className="py-1 px-[10px] rounded-lg gap-[10px] bg-[#F1F7FF]"
-                  onClick={() => set_paginate_handler(all_page)}
-                >
-                  {all_page}
-                </li> */}
               </ul>
             </a>
 
@@ -96,15 +81,7 @@ const TablePagination = ({
             >
               <span className="sr-only">Next</span>
 
-              <svg
-                className="h-5 w-5"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                aria-hidden="true"
-              >
-                <path d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" />
-              </svg>
+              <VectorRight />
             </a>
           </nav>
         </div>
