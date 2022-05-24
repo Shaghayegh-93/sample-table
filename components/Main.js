@@ -11,12 +11,18 @@ const Main = ({ todo, user }) => {
     value: "todo",
   });
   const [currentPage, setCurrentPage] = useState(1);
+  // pagination
+  const [arrayOfCurrentPages, setArrayOfCurrentPages] = useState([]); // state to diplay firt,last and couple between pages
   const [search, setSearch] = useState("");
   const [filter_state, set_filter_state] = useState(todo);
   const [sort_data, set_sort_data] = useState(filter_state);
   const count_page = 10;
   const all_page = Math.round(sort_data.length / count_page);
   console.log("sortData", sort_data);
+  let navigate_num = [];
+  for (let i = 1; i <= all_page; i++) {
+    navigate_num.push(i);
+  }
 
   useEffect(() => {
     const next_page = currentPage * count_page;
@@ -24,6 +30,42 @@ const Main = ({ todo, user }) => {
     let data = sort_data.slice(prev_page, next_page);
     set_paginated_data(data);
   }, [sort_data, currentPage]);
+  console.log("currentpage", currentPage);
+  useEffect(() => {
+    let tempNumberOfPage = [...arrayOfCurrentPages];
+    let dotsInitial = "...";
+    let dotsLeft = "...";
+    let dotsRight = "...";
+
+    if (currentPage >= 1 && currentPage <= 3) {
+      tempNumberOfPage = [1, 2, 3, 4, dotsInitial, navigate_num.length];
+    } else if (currentPage === 4) {
+      const sliced = navigate_num.slice(0, 5);
+      tempNumberOfPage = [...sliced, dotsInitial, navigate_num.length];
+    } else if (currentPage > 4 && currentPage < navigate_num.length - 2) {
+      const sliced1 = navigate_num.slice(currentPage - 2, currentPage);
+      const sliced2 = navigate_num.slice(currentPage, currentPage + 1);
+      tempNumberOfPage = [
+        1,
+        dotsLeft,
+        ...sliced1,
+        ...sliced2,
+        dotsRight,
+        navigate_num.length,
+      ];
+    } else if (currentPage > navigate_num.length - 3) {
+      const sliced = navigate_num.slice(navigate_num.length - 4);
+      tempNumberOfPage = [1, dotsLeft, ...sliced];
+    } else if (currentPage === dotsInitial) {
+      setCurrentPage(arrayOfCurrentPages[arrayOfCurrentPages.length - 3] + 1);
+    } else if (currentPage === dotsRight) {
+      setCurrentPage(arrayOfCurrentPages[3] + 2);
+    } else if (currentPage === dotsLeft) {
+      setCurrentPage(arrayOfCurrentPages[3] - 2);
+    }
+    setArrayOfCurrentPages(tempNumberOfPage);
+  }, [currentPage]);
+
   const set_paginate_handler = (type) => {
     if (type === "next") {
       currentPage < all_page && setCurrentPage(currentPage + 1);
@@ -109,6 +151,8 @@ const Main = ({ todo, user }) => {
         all_page={all_page}
         currentPage={currentPage}
         todo={todo}
+        navigate_num={navigate_num}
+        arrayOfCurrentPages={arrayOfCurrentPages}
       />
     </div>
   );
