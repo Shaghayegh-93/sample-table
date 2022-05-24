@@ -1,10 +1,10 @@
 import React from "react";
 import TableRow from "./TableRow";
-import { useState } from "react";
+// import { useState } from "react";
 import TableHeadItem from "./../components/TableHeadItem";
 import ArrowUp from "../public/svg/ArrowUp.svg";
 import ArrowDown from "../public/svg/ArrowDown.svg";
-const Table = ({ user, data, sortHandler, sort_data }) => {
+const Table = ({ user, data, sortHandler, sort_type }) => {
   const theadData = [
     { path: "user", name: "User" },
     {
@@ -13,11 +13,19 @@ const Table = ({ user, data, sortHandler, sort_data }) => {
       icon: (
         <div className="flex flex-col ">
           <ArrowUp
-            className={`cursor-pointer ${sort_data === "asc" && "svgColor"}`}
+            className={`cursor-pointer ${
+              sort_type.type === "asc" &&
+              sort_type.value === "contact" &&
+              "svgColor"
+            }`}
             onClick={() => sortHandler("asc", "contact")}
           />
           <ArrowDown
-            className={`cursor-pointer ${sort_data === "desc" && "svgColor"}`}
+            className={`cursor-pointer ${
+              sort_type.type === "desc" &&
+              sort_type.value === "contact" &&
+              "svgColor"
+            }`}
             onClick={() => sortHandler("desc", "contact")}
           />
         </div>
@@ -29,11 +37,19 @@ const Table = ({ user, data, sortHandler, sort_data }) => {
       icon: (
         <div className="flex flex-col ">
           <ArrowUp
-            className={`cursor-pointer ${sort_data === "asc" && "svgColor"}`}
+            className={`cursor-pointer ${
+              sort_type.type === "asc" &&
+              sort_type.value === "todo" &&
+              "svgColor"
+            }`}
             onClick={() => sortHandler("asc", "todo")}
           />
           <ArrowDown
-            className={`cursor-pointer ${sort_data === "desc" && "svgColor"}`}
+            className={`cursor-pointer ${
+              sort_type.type === "desc" &&
+              sort_type.value === "todo" &&
+              "svgColor"
+            }`}
             onClick={() => sortHandler("desc", "todo")}
           />
         </div>
@@ -45,11 +61,11 @@ const Table = ({ user, data, sortHandler, sort_data }) => {
       icon: (
         <div className="flex flex-col ">
           <ArrowUp
-            className={`cursor-pointer ${sort_data === "asc" && "svgColor"}`}
+            className={`cursor-pointer ${sort_type === "asc" && "svgColor"}`}
             onClick={() => sortHandler("asc", "completed")}
           />
           <ArrowDown
-            className={`cursor-pointer ${sort_data === "desc" && "svgColor"}`}
+            className={`cursor-pointer ${sort_type === "desc" && "svgColor"}`}
             onClick={() => sortHandler("desc", "completed")}
           />
         </div>
