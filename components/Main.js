@@ -6,16 +6,23 @@ import { useState, useEffect } from "react";
 
 const Main = ({ todo, user }) => {
   const [paginated_data, set_paginated_data] = useState([]);
-  const [sort_type, set_sort_type] = useState({
-    type: "asc",
-    value: "todo",
-  });
+
+  const [sort_type, set_sort_type] = useState(
+    {
+      type: "",
+      value: "todo",
+    },
+    {
+      type: "",
+      value: "contact",
+    }
+  );
   const [currentPage, setCurrentPage] = useState(1);
-  // pagination
-  const [arrayOfCurrentPages, setArrayOfCurrentPages] = useState([]); // state to diplay firt,last and couple between pages
-  const [search, setSearch] = useState("");
+  // filter and sort todo jason
   const [filter_state, set_filter_state] = useState(todo);
   const [sort_data, set_sort_data] = useState(filter_state);
+  // pagination
+  const [arrayOfCurrentPages, setArrayOfCurrentPages] = useState([]); // state to diplay firt,last and couple between pages
   const count_page = 10;
   const all_page = Math.round(sort_data.length / count_page);
   console.log("sortData", sort_data);
@@ -24,13 +31,19 @@ const Main = ({ todo, user }) => {
     navigate_num.push(i);
   }
 
+  const [search, setSearch] = useState("");
+
+  // filter and sort json user
+  const [filter_user_state, set_filter_user_state] = useState(user);
+  const [sort_user_data, set_sort_user_data] = useState(filter_user_state);
+
   useEffect(() => {
     const next_page = currentPage * count_page;
     const prev_page = (currentPage - 1) * count_page;
     let data = sort_data.slice(prev_page, next_page);
     set_paginated_data(data);
   }, [sort_data, currentPage]);
-  console.log("currentpage", currentPage);
+  // pagination
   useEffect(() => {
     let tempNumberOfPage = [...arrayOfCurrentPages];
     let dotsInitial = "...";
@@ -92,47 +105,66 @@ const Main = ({ todo, user }) => {
     }
   };
 
-  const compareFn = (a, b, key) => {
-    if (a[key] > b[key]) return +1;
-    else if (a[key] < b[key]) return -1;
+  const compareFn = (a, b) => {
+    if (a > b) return +1;
+    else if (a < b) return -1;
     else return 0;
   };
 
-  const sortHandler = (type, value, filter) => {
+  const sortHandler = (type, value) => {
     set_sort_type({ type, value });
   };
   useEffect(() => {
     let my_sort_data = [];
-    console.log(sort_type);
     if (sort_type.value === "todo") {
       const current_filter_state = [...filter_state];
       if (sort_type.type === "asc") {
-        my_sort_data = current_filter_state.sort((a, b) =>
-          compareFn(a, b, "title")
+        my_sort_data = current_filter_state.sort(({ title: a }, { title: b }) =>
+          compareFn(a, b)
         );
       } else {
         my_sort_data = current_filter_state
-          .sort((a, b) => compareFn(a, b, "title"))
+          .sort(({ title: a }, { title: b }) => compareFn(a, b))
           .reverse();
       }
     } else if (sort_type.value === "completed") {
       const current_filter_state = [...filter_state];
-
-      const my_func = (a, b) => {
-        if (Number(a.completed) > Number(b.completed)) return +1;
-        else if (Number(a.completed) < Number(b.completed)) return -1;
-        else return 0;
-      };
       if (sort_type.type === "asc") {
-        my_sort_data = current_filter_state.sort((a, b) => my_func(a, b));
-      } else {
         my_sort_data = current_filter_state
-          .sort((a, b) => my_func(a, b))
+          .sort(({ completed: a }, { completed: b }) =>
+            compareFn(Number(a), Number(b))
+          )
           .reverse();
+      } else {
+        my_sort_data = current_filter_state.sort(
+          ({ completed: a }, { completed: b }) =>
+            compareFn(Number(a), Number(b))
+        );
       }
     }
     set_sort_data(my_sort_data);
+    setCurrentPage(1);
   }, [filter_state, sort_type]);
+  console.log("user:", user);
+  useEffect(() => {
+    let my_sort_data = [];
+    if (sort_type.value === "contact") {
+      const current_filter_state = [...filter_user_state];
+      if (sort_type.type === "asc") {
+        my_sort_data = current_filter_state.sort(({ email: a }, { email: b }) =>
+          compareFn(a, b)
+        );
+      } else {
+        my_sort_data = current_filter_state
+          .sort(({ email: a }, { email: b }) => compareFn(a, b))
+          .reverse();
+      }
+    }
+    set_sort_user_data(my_sort_data);
+    setCurrentPage(1);
+  }, [filter_user_state, sort_type]);
+
+  console.log("sorte_data: ", sort_data);
   return (
     <div className="bg-white m-auto mt-7 rounded-xl px-4  xl:w-[1258px] ">
       <Navbar
@@ -142,7 +174,12 @@ const Main = ({ todo, user }) => {
         filterdTodo={filter_state}
         todo_state={paginated_data}
       />
-      <Table user={user} sortHandler={sortHandler} data={paginated_data} />
+      <Table
+        user={user}
+        sortHandler={sortHandler}
+        data={paginated_data}
+        sort_type={sort_type}
+      />
       <TablePagination
         filterdTodo={filter_state}
         todo_state={paginated_data}
