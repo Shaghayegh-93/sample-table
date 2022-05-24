@@ -5,12 +5,10 @@ const TablePagination = ({
   all_page,
   currentPage,
   set_paginate_handler,
+  navigate_num,
+  arrayOfCurrentPages,
 }) => {
-  let navigate_num = [];
-  for (let i = 1; i <= all_page; i++) {
-    navigate_num.push(i);
-  }
-  console.log("navigate", navigate_num[3]);
+  // console.log("navigate", navigate_num[3]);
 
   return (
     <div className="  sm:px-6">
@@ -36,9 +34,15 @@ const TablePagination = ({
             aria-label="Pagination"
           >
             <a
-              onClick={() => set_paginate_handler("prev")}
+              onClick={(e) =>
+                currentPage === 1
+                  ? e.preventDefault()
+                  : set_paginate_handler("prev")
+              }
               href="#"
-              className="relative inline-flex items-center justify-center bg-[#F1F7FF] rounded-lg text-sm font-medium py-1 px-[10px] "
+              className={`relative inline-flex items-center justify-center bg-[#F1F7FF] rounded-lg  text-sm font-medium py-1 px-[10px] ${
+                currentPage === 1 && " text-gray-300 cursor-default"
+              }`}
             >
               <span className="sr-only">Previous</span>
 
@@ -58,31 +62,37 @@ const TablePagination = ({
               className=" relative inline-flex items-center   text-sm font-medium"
             >
               <ul className="flex items-center gap-[10px]">
-                {navigate_num.slice(0, 3).map((number, id) => (
+                {arrayOfCurrentPages.map((numberOfPage, id) => (
                   <li
-                    onClick={() => set_paginate_handler(number)}
+                    onClick={() => set_paginate_handler(numberOfPage)}
                     className={`py-1 px-[10px] rounded-lg gap-[10px] bg-[#F1F7FF] ${
-                      id === currentPage - 1 && "bg-[#1ABBB9]"
+                      numberOfPage === currentPage && "bg-[#1ABBB9]"
                     }`}
-                    key={number}
+                    key={numberOfPage}
                   >
-                    {number}
+                    {numberOfPage}
                   </li>
                 ))}
-                <li>...</li>
+                {/* <li>...</li>
                 <li
                   className="py-1 px-[10px] rounded-lg gap-[10px] bg-[#F1F7FF]"
                   onClick={() => set_paginate_handler(all_page)}
                 >
-                  {all_page === navigate_num[2] ? navigate_num[2] : ""}
-                </li>
+                  {all_page}
+                </li> */}
               </ul>
             </a>
 
             <a
-              onClick={() => set_paginate_handler("next")}
+              onClick={(e) =>
+                currentPage === all_page
+                  ? e.preventDefault()
+                  : set_paginate_handler("next")
+              }
               href="#"
-              className="relative inline-flex items-center justify-center bg-[#F1F7FF] rounded-lg  text-sm font-medium py-1 px-[10px]"
+              className={`relative inline-flex items-center justify-center bg-[#F1F7FF] rounded-lg  text-sm font-medium py-1 px-[10px] ${
+                currentPage === all_page && " text-gray-300 cursor-default"
+              }`}
             >
               <span className="sr-only">Next</span>
 
