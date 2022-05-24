@@ -21,7 +21,7 @@ const TableHeadItem = ({ data }) => (
             className="text-center  py-3 px-6 text-xs font-medium tracking-wider  text-gray-700 uppercase "
             key={item.path}
           >
-            <div className="flex items-center justify-around">
+            <div className="flex items-center justify-center gap-x-2">
               <div> {item.icon}</div>
               {item.name}
             </div>
