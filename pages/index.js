@@ -17,8 +17,12 @@ export default function Home({ userData, todoeData }) {
 }
 Home.getInitialProps = async function (context) {
   const [userData, todoeData] = await Promise.all([
-    fetch(`https://jsonplaceholder.typicode.com/users`).then((r) => r.json()),
-    fetch(`https://jsonplaceholder.typicode.com/todos`).then((r) => r.json()),
+    fetch(`https://jsonplaceholder.typicode.com/users`)
+      .then((r) => r.json())
+      .catch((err) => console.log("error: ", err)),
+    fetch(`https://jsonplaceholder.typicode.com/todos`)
+      .then((r) => r.json())
+      .catch((err) => console.log("error: ", err)),
   ]);
 
   return { userData, todoeData };
