@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import TableRow from "./TableRow";
 // import { useState } from "react";
 import TableHeadItem from "./../components/TableHeadItem";
 import ArrowUp from "../public/svg/ArrowUp.svg";
 import ArrowDown from "../public/svg/ArrowDown.svg";
-const Table = ({ user, data, sortHandler, sort_type }) => {
+const Table = ({
+  user,
+  data,
+  sortHandler,
+  sort_type,
+  toggleData,
+  selectedItems,
+  toggleAllData,
+}) => {
   const theadData = [
     { path: "user", name: "User" },
     {
@@ -80,10 +88,16 @@ const Table = ({ user, data, sortHandler, sort_type }) => {
         <div className="inline-block min-w-full align-middle ">
           <div className=" overflow-hidden ">
             <table className="   p-4 w-full divide-y divide-gray-200 table-fixed dark:divide-gray-700">
-              <TableHeadItem data={theadData} />
+              <TableHeadItem data={theadData} toggleAllData={toggleAllData} />
               <tbody className="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700 	">
                 {data?.map((item) => (
-                  <TableRow key={item} className="" todo={item} user={user} />
+                  <TableRow
+                    key={item}
+                    todo={item}
+                    user={user}
+                    toggleData={toggleData}
+                    selectedItems={selectedItems}
+                  />
                 ))}
               </tbody>
             </table>
