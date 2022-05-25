@@ -16,12 +16,12 @@
   font-family: "Inter";
   font-weight: 400;
   font-style: Regular;
-  src: url("/assets/fonts/Inter-Regular.ttf") format("ttf");
+  src: url("/fonts/static/Inter-Regular.ttf") format("ttf");
 }
 
 @font-face {
   font-family: "Inter";
   font-weight: 600;
   font-style: SemiBold;
-  src: url("/assets/fonts/SemiBold.ttf") format("ttf");
+  src: url("/fonts/static/SemiBold.ttf") format("ttf");
 }

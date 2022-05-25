@@ -6,6 +6,8 @@ import { useState, useEffect } from "react";
 
 const Main = ({ todo, user }) => {
   const [paginated_data, set_paginated_data] = useState([]);
+  const [selectedToDo, setSelectedToDo] = useState([]);
+  console.log("paginatedData:", paginated_data);
 
   const [sort_type, set_sort_type] = useState(
     {
@@ -18,20 +20,55 @@ const Main = ({ todo, user }) => {
     }
   );
   const [currentPage, setCurrentPage] = useState(1);
+  console.log("currentpage:", currentPage);
   // filter and sort todo jason
   const [filter_state, set_filter_state] = useState(todo);
+  console.log("filterState:", filter_state.length);
   const [sort_data, set_sort_data] = useState(filter_state);
+  console.log("sortData", sort_data.length);
   // pagination
-  const [arrayOfCurrentPages, setArrayOfCurrentPages] = useState([]); // state to diplay firt,last and couple between pages
+  const [arrayOfCurrentPages, setArrayOfCurrentPages] = useState([]); // state to diplay first,last and couple between pages
   const count_page = 10;
   const all_page = Math.round(sort_data.length / count_page);
-  console.log("sortData", sort_data);
+  console.log("allapage:", all_page);
+  console.log("sort_data:", sort_data);
+
   let navigate_num = [];
   for (let i = 1; i <= all_page; i++) {
     navigate_num.push(i);
   }
 
   const [search, setSearch] = useState("");
+  // toggle single row
+  const toggleData = (value) => {
+    const selectedItem = [...selectedToDo];
+    const index = selectedItem.findIndex((item) => item === value);
+
+    if (index === -1) {
+      selectedItem.push(value);
+      setSelectedToDo(selectedItem);
+    } else {
+      let updatedItem = selectedItem.filter((item) => item !== value);
+      setSelectedToDo(updatedItem);
+    }
+  };
+  // toggle all row
+  const toggleAllData = (is_checked) => {
+    const selectedItem = [...selectedToDo];
+    if (is_checked) {
+      paginated_data.forEach((key) => {
+        if (selectedItem.findIndex((item) => item === key.id) === -1) {
+          selectedItem.push(key.id);
+        }
+      });
+      setSelectedToDo(selectedItem);
+    } else {
+      setSelectedToDo([]);
+    }
+
+    // const index =
+  };
+  console.log("selectedToDo: ", selectedToDo);
 
   // filter and sort json user
   const [filter_user_state, set_filter_user_state] = useState(user);
@@ -145,7 +182,7 @@ const Main = ({ todo, user }) => {
     set_sort_data(my_sort_data);
     setCurrentPage(1);
   }, [filter_state, sort_type]);
-  console.log("user:", user);
+
   useEffect(() => {
     let my_sort_data = [];
     if (sort_type.value === "contact") {
@@ -164,7 +201,6 @@ const Main = ({ todo, user }) => {
     setCurrentPage(1);
   }, [filter_user_state, sort_type]);
 
-  console.log("sorte_data: ", sort_data);
   return (
     <div className="bg-white m-auto mt-7 rounded-xl px-4  xl:w-[1258px] ">
       <Navbar
@@ -179,6 +215,9 @@ const Main = ({ todo, user }) => {
         sortHandler={sortHandler}
         data={paginated_data}
         sort_type={sort_type}
+        toggleData={toggleData}
+        selectedItems={selectedToDo}
+        toggleAllData={toggleAllData}
       />
       <TablePagination
         filterdTodo={filter_state}
