@@ -1,6 +1,7 @@
 import React from "react";
+import { theme } from "../tailwind.config";
 
-const TableHeadItem = ({ data }) => (
+const TableHeadItem = ({ data, toggleAllData }) => (
   <thead className="bg-gray-100 ">
     <tr className="">
       <th scope="col" className="p-4 ">
@@ -8,7 +9,8 @@ const TableHeadItem = ({ data }) => (
           <input
             type="checkbox"
             className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-          ></input>
+            onChange={(e) => toggleAllData(e.target.checked)}
+          />
           <label htmlFor="checkbox" className="sr-only">
             checkbox
           </label>
@@ -18,11 +20,11 @@ const TableHeadItem = ({ data }) => (
         return item.icon ? (
           <th
             scope="col"
-            className="text-center  py-3 px-6 text-xs font-medium tracking-wider  text-gray-700 uppercase "
+            className="text-center  py-3 px-6 text-xs tracking-wider  text-gray-700 uppercase font-semibold "
             key={item.path}
           >
             <div className="flex items-center justify-center gap-x-2">
-              <div> {item.icon}</div>
+              <div className=""> {item.icon}</div>
               {item.name}
             </div>
           </th>
@@ -31,7 +33,7 @@ const TableHeadItem = ({ data }) => (
             scope="col"
             className={`${
               item.name === "Contact" ? "hidden md:block  " : ""
-            }   py-3 px-6 text-xs font-medium tracking-wider text-center text-gray-700 uppercase `}
+            }   py-3 px-6 text-xs font-semibold tracking-wider text-center text-gray-700 uppercase`}
             key={item.path}
           >
             {item.name}
@@ -41,5 +43,4 @@ const TableHeadItem = ({ data }) => (
     </tr>
   </thead>
 );
-
 export default TableHeadItem;
