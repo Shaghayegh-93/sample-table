@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply bg-[#06202A] flex items-center justify-center;
+    @apply bg-[#06202A] flex items-center justify-center text-xs;
   }
 }
 @layer utilities {
