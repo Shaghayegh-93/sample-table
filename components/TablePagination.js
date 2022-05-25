@@ -7,7 +7,7 @@ const TablePagination = ({
   all_page,
   currentPage,
   set_paginate_handler,
-  navigate_num,
+  navigateNum,
   arrayOfCurrentPages,
 }) => {
   return (
@@ -30,7 +30,7 @@ const TablePagination = ({
             </p>
           </div>
           <nav
-            className="p-2 gap-3  flex items-center justify-center"
+            className="p-2 gap-3  flex items-center justify-center  "
             aria-label="Pagination"
           >
             <a
@@ -40,7 +40,7 @@ const TablePagination = ({
                   : set_paginate_handler("prev")
               }
               href="#"
-              className={`relative inline-flex items-center justify-center bg-[#F1F7FF] rounded-lg  text-sm font-medium py-1 px-[10px] ${
+              className={` relative inline-flex items-center justify-center bg-[#F1F7FF] rounded-lg  text-sm font-medium py-1 px-[10px]${
                 currentPage === 1 && " text-gray-300 cursor-default"
               }`}
             >
