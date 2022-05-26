@@ -7,7 +7,7 @@ const TablePagination = ({
   all_page,
   currentPage,
   set_paginate_handler,
-  navigateNum,
+  navigate_num,
   arrayOfCurrentPages,
 }) => {
   return (
