@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 const Main = ({ todo, user }) => {
   const [paginated_data, set_paginated_data] = useState([]);
   const [selectedToDo, setSelectedToDo] = useState([]);
-  console.log("paginatedData:", paginated_data);
+  // console.log("paginatedData:", paginated_data);
 
   const [sort_type, set_sort_type] = useState(
     {
@@ -20,18 +20,16 @@ const Main = ({ todo, user }) => {
     }
   );
   const [currentPage, setCurrentPage] = useState(1);
-  console.log("currentpage:", currentPage);
+  // console.log("currentpage:", currentPage);
   // filter and sort todo jason
   const [filter_state, set_filter_state] = useState(todo);
-  console.log("filterState:", filter_state.length);
+  // console.log("filterState:", filter_state.length);
   const [sort_data, set_sort_data] = useState(filter_state);
-  console.log("sortData", sort_data.length);
+  // console.log("sortData", sort_data.length);
   // pagination
   const [arrayOfCurrentPages, setArrayOfCurrentPages] = useState([]); // state to diplay first,last and couple between pages
   const count_page = 10;
   const all_page = Math.round(sort_data.length / count_page);
-  console.log("allapage:", all_page);
-  console.log("sort_data:", sort_data);
 
   let navigate_num = [];
   for (let i = 1; i <= all_page; i++) {
@@ -68,12 +66,13 @@ const Main = ({ todo, user }) => {
 
     // const index =
   };
-  console.log("selectedToDo: ", selectedToDo);
+  // console.log("selectedToDo: ", selectedToDo);
 
   // filter and sort json user
   const [filter_user_state, set_filter_user_state] = useState(user);
   const [sort_user_data, set_sort_user_data] = useState(filter_user_state);
-
+  // console.log("navigate_num:", navigate_num.length);
+  // console.log("allPage:", all_page);
   useEffect(() => {
     const next_page = currentPage * count_page;
     const prev_page = (currentPage - 1) * count_page;
@@ -115,6 +114,12 @@ const Main = ({ todo, user }) => {
     }
     setArrayOfCurrentPages(tempNumberOfPage);
   }, [currentPage]);
+  console.log("currenPage:", currentPage);
+  console.log("allpage", all_page);
+  console.log("navigateNum:", navigate_num);
+  console.log("arryaofcurrentPage3:", arrayOfCurrentPages[3]);
+  console.log("arryaofcurrentPage:", arrayOfCurrentPages);
+  console.log("arrayofcurentpageelength:", arrayOfCurrentPages.length);
 
   const set_paginate_handler = (type) => {
     if (type === "next") {
