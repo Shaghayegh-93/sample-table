@@ -63,33 +63,20 @@ const Table = ({
         </div>
       ),
     },
-    {
-      path: "Completed",
-      name: "Completed",
-      icon: (
-        <div className="flex flex-col ">
-          <ArrowUp
-            className={`cursor-pointer ${sort_type === "asc" && "svgColor"}`}
-            onClick={() => sortHandler("asc", "completed")}
-          />
-          <ArrowDown
-            className={`cursor-pointer ${sort_type === "desc" && "svgColor"}`}
-            onClick={() => sortHandler("desc", "completed")}
-          />
-        </div>
-      ),
-    },
+
+    { path: "Completed", name: "Completed" },
+
     { path: "Action", name: "Action" },
   ];
 
   return (
-    <div className="flex flex-col  rounded-2xl pb-6">
+    <div className="flex flex-col px-2  rounded-2xl pb-6 w-full">
       <div className="overflow-x-auto sm:rounded-lg rounded-2xl border border-[#E0E7ED] 	">
-        <div className="inline-block min-w-full align-middle ">
+        <div className="inline-block  ">
           <div className=" overflow-hidden ">
-            <table className="   p-4 w-full divide-y divide-gray-200 table-fixed dark:divide-gray-700">
+            <table className="  w-full divide-y divide-gray-200 table-fixed  ">
               <TableHeadItem data={theadData} toggleAllData={toggleAllData} />
-              <tbody className="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700 	">
+              <tbody className="bg-white divide-y divide-gray-200 	">
                 {data?.map((item) => (
                   <TableRow
                     key={item}
