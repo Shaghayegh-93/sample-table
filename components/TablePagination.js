@@ -9,7 +9,11 @@ const TablePagination = ({
   set_paginate_handler,
   navigate_num,
   arrayOfCurrentPages,
+  paginated_data,
+  filter_state,
+  search,
 }) => {
+  console.log("paginatedddddd:", paginated_data);
   return (
     <div className="  sm:px-6">
       <div className="   ">
@@ -17,10 +21,16 @@ const TablePagination = ({
           <div className="pb-5  ">
             <p className="text-sm  ">
               Showing
-              <span className="font-medium px-1">{currentPage * 10}</span>
+              <span className="font-medium px-1">
+                {/* {currentPage * 10} */}
+                {currentPage > 1
+                  ? (currentPage - 1) * paginated_data.length
+                  : 1}
+              </span>
               to
               <span className="font-medium px-1">
-                {currentPage >= 20 ? todo.length : (currentPage + 1) * 10}
+                {/* {currentPage >= 20 ? todo.length : (currentPage + 1) * 10} */}
+                {currentPage * paginated_data.length}
               </span>
               of
               <span className="font-medium px-1">

@@ -1,14 +1,13 @@
 import React from "react";
-import { theme } from "../tailwind.config";
 
 const TableHeadItem = ({ data, toggleAllData }) => (
-  <thead className="bg-gray-100 ">
+  <thead className=" bg-gray-100 w-[538px] h-14 ">
     <tr className="">
-      <th scope="col" className="p-4 ">
+      <th scope="col" className="p-4 w-14 h-14 gap-[10px] ">
         <div className="flex items-center justify-center">
           <input
             type="checkbox"
-            className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+            className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 "
             onChange={(e) => toggleAllData(e.target.checked)}
           />
           <label htmlFor="checkbox" className="sr-only">
@@ -20,20 +19,30 @@ const TableHeadItem = ({ data, toggleAllData }) => (
         return item.icon ? (
           <th
             scope="col"
-            className="text-center  py-3 px-6 text-xs tracking-wider  text-gray-700 uppercase font-semibold "
+            className={`${
+              item.name === "Contact" ? "hidden md:table-cell  " : ""
+            } ${item.name === "User" ? "w-[155.5px] h-14" : ""} ${
+              item.name === "To-Do" ? "w-[155.5px] h-14" : ""
+            }
+            ${item.name === "Completed" ? "w-[90px] h-14" : ""}
+            ${
+              item.name === "Action" ? "w-[81px] h-14" : ""
+            }whitespace-nowrap   text-xs font-semibold tracking-wider text-left text-gray-700 py-4 px-3 gap-[10px]   `}
             key={item.path}
           >
-            <div className="flex items-center justify-center gap-x-2">
-              <div className=""> {item.icon}</div>
+            <div className="flex items-center justify-between w-full ">
               {item.name}
+              <div> {item.icon}</div>
             </div>
           </th>
         ) : (
           <th
             scope="col"
             className={`${
-              item.name === "Contact" ? "hidden md:block  " : ""
-            }   py-3 px-6 text-xs font-semibold tracking-wider text-center text-gray-700 uppercase`}
+              item.name === "Contact"
+                ? "hidden md:table-cell  w-[314.67px] h-14"
+                : ""
+            } whitespace-nowrap   py-4 px-3  text-xs font-semibold tracking-wider text-left text-gray-700 uppercase justify-between    `}
             key={item.path}
           >
             {item.name}
