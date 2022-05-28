@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 
 const Main = ({ todo, user }) => {
   const [paginated_data, set_paginated_data] = useState([]);
+  console.log("paginatedData:", paginated_data);
   const [selectedToDo, setSelectedToDo] = useState([]);
   // console.log("paginatedData:", paginated_data);
 
@@ -23,9 +24,9 @@ const Main = ({ todo, user }) => {
   // console.log("currentpage:", currentPage);
   // filter and sort todo jason
   const [filter_state, set_filter_state] = useState(todo);
-  // console.log("filterState:", filter_state.length);
+  console.log("filterState:", filter_state.length);
   const [sort_data, set_sort_data] = useState(filter_state);
-  // console.log("sortData", sort_data.length);
+  console.log("sortData", sort_data.length);
   // pagination
   const [arrayOfCurrentPages, setArrayOfCurrentPages] = useState([]); // state to diplay first,last and couple between pages
   const count_page = 10;
@@ -86,9 +87,15 @@ const Main = ({ todo, user }) => {
     let dotsLeft = "...";
     let dotsRight = "...";
 
-    if (currentPage >= 1 && currentPage <= 3) {
+    if (currentPage >= 1 && currentPage <= 3 && all_page <= 3) {
+      const sliced = navigate_num.slice(0, 3);
+      tempNumberOfPage = [...sliced];
+    } else if (currentPage === 1 && all_page <= 6) {
+      const sliced = navigate_num.slice(0, 5);
+      tempNumberOfPage = [...sliced];
+    } else if (currentPage >= 1 && currentPage <= 3 && all_page > 6) {
       tempNumberOfPage = [1, 2, 3, 4, dotsInitial, navigate_num.length];
-    } else if (currentPage === 4) {
+    } else if (currentPage === 4 && all_page > 6) {
       const sliced = navigate_num.slice(0, 5);
       tempNumberOfPage = [...sliced, dotsInitial, navigate_num.length];
     } else if (currentPage > 4 && currentPage < navigate_num.length - 2) {
@@ -113,7 +120,7 @@ const Main = ({ todo, user }) => {
       setCurrentPage(arrayOfCurrentPages[3] - 2);
     }
     setArrayOfCurrentPages(tempNumberOfPage);
-  }, [currentPage]);
+  }, [currentPage, all_page]);
   console.log("currenPage:", currentPage);
   console.log("allpage", all_page);
   console.log("navigateNum:", navigate_num);
@@ -169,21 +176,22 @@ const Main = ({ todo, user }) => {
           .sort(({ title: a }, { title: b }) => compareFn(a, b))
           .reverse();
       }
-    } else if (sort_type.value === "completed") {
-      const current_filter_state = [...filter_state];
-      if (sort_type.type === "asc") {
-        my_sort_data = current_filter_state
-          .sort(({ completed: a }, { completed: b }) =>
-            compareFn(Number(a), Number(b))
-          )
-          .reverse();
-      } else {
-        my_sort_data = current_filter_state.sort(
-          ({ completed: a }, { completed: b }) =>
-            compareFn(Number(a), Number(b))
-        );
-      }
     }
+    // } else if (sort_type.value === "completed") {
+    //   const current_filter_state = [...filter_state];
+    //   if (sort_type.type === "asc") {
+    //     my_sort_data = current_filter_state
+    //       .sort(({ completed: a }, { completed: b }) =>
+    //         compareFn(Number(a), Number(b))
+    //       )
+    //       .reverse();
+    //   } else {
+    //     my_sort_data = current_filter_state.sort(
+    //       ({ completed: a }, { completed: b }) =>
+    //         compareFn(Number(a), Number(b))
+    //     );
+    //   }
+    // }
     set_sort_data(my_sort_data);
     setCurrentPage(1);
   }, [filter_state, sort_type]);
@@ -207,7 +215,7 @@ const Main = ({ todo, user }) => {
   }, [filter_user_state, sort_type]);
 
   return (
-    <div className="bg-white m-auto mt-7 rounded-xl px-4  xl:w-[1258px] ">
+    <div className="bg-white m-auto my-7 rounded-xl px-4  xl:w-[1258px] ">
       <Navbar
         search={search}
         changeHandler={changeHandler}
@@ -226,7 +234,8 @@ const Main = ({ todo, user }) => {
       />
       <TablePagination
         filterdTodo={filter_state}
-        todo_state={paginated_data}
+        filter_state={filter_state}
+        paginated_data={paginated_data}
         user={user}
         set_paginate_handler={set_paginate_handler}
         all_page={all_page}
@@ -234,6 +243,7 @@ const Main = ({ todo, user }) => {
         todo={todo}
         navigate_num={navigate_num}
         arrayOfCurrentPages={arrayOfCurrentPages}
+        search={search}
       />
     </div>
   );
