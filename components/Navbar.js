@@ -17,16 +17,16 @@ const Navbar = ({ search, changeHandler, searchHandler, todo_state }) => {
         <span className="h-[15px] w-10 top-[10px] ml-2 ">entries</span>
       </div>
       {/* right side */}
-      <div>
+      <div className="">
         <div
           className="border gap-x-2 
-         border-[#E0E7ED] flex relative items-center py-[9px] px-2 rounded-md text-[#BDBDBD] w-[250px] h-9"
+         border-[#E0E7ED] flex relative items-center py-[9px] px-2 rounded-md text-[#BDBDBD] w-[250px] h-9 focus-within:border-[#1ABBB9] focus:border-4"
         >
           <span className=" fill-[#BDBDBD]">
             <Search width={12} height={12} />
           </span>
           <input
-            className="outline-none w-[210px] h-[15px] focus:outline-none text-xs font-normal text-[#BDBDBD] "
+            className="outline-none w-[210px] h-[15px] focus:outline-none text-xs font-normal text-[#BDBDBD]   "
             placeholder="Search name,email or etc."
             value={search}
             onChange={changeHandler}
