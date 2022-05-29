@@ -8,7 +8,6 @@ const Main = ({ todo, user }) => {
   const [paginated_data, set_paginated_data] = useState([]);
   console.log("paginatedData:", paginated_data);
   const [selectedToDo, setSelectedToDo] = useState([]);
-  // console.log("paginatedData:", paginated_data);
 
   const [sort_type, set_sort_type] = useState(
     {
@@ -24,9 +23,14 @@ const Main = ({ todo, user }) => {
   // console.log("currentpage:", currentPage);
   // filter and sort todo jason
   const [filter_state, set_filter_state] = useState(todo);
-  console.log("filterState:", filter_state.length);
+
+  // console.log("filterState:", filter_state);
   const [sort_data, set_sort_data] = useState(filter_state);
-  console.log("sortData", sort_data.length);
+  // console.log("sortData", sort_data);
+  const [filter_user_state, set_filter_user_state] = useState(user);
+  console.log("filterUser:", filter_user_state);
+  const [sort_user_data, set_sort_user_data] = useState(filter_user_state);
+  console.log("sortUser:", sort_user_data);
   // pagination
   const [arrayOfCurrentPages, setArrayOfCurrentPages] = useState([]); // state to diplay first,last and couple between pages
   const count_page = 10;
@@ -70,8 +74,7 @@ const Main = ({ todo, user }) => {
   // console.log("selectedToDo: ", selectedToDo);
 
   // filter and sort json user
-  const [filter_user_state, set_filter_user_state] = useState(user);
-  const [sort_user_data, set_sort_user_data] = useState(filter_user_state);
+
   // console.log("navigate_num:", navigate_num.length);
   // console.log("allPage:", all_page);
   useEffect(() => {
@@ -121,12 +124,6 @@ const Main = ({ todo, user }) => {
     }
     setArrayOfCurrentPages(tempNumberOfPage);
   }, [currentPage, all_page]);
-  console.log("currenPage:", currentPage);
-  console.log("allpage", all_page);
-  console.log("navigateNum:", navigate_num);
-  console.log("arryaofcurrentPage3:", arrayOfCurrentPages[3]);
-  console.log("arryaofcurrentPage:", arrayOfCurrentPages);
-  console.log("arrayofcurentpageelength:", arrayOfCurrentPages.length);
 
   const set_paginate_handler = (type) => {
     if (type === "next") {
@@ -145,8 +142,21 @@ const Main = ({ todo, user }) => {
     const word = e.target.value;
     setSearch(word);
     const filtered = todo.filter((td) => td.title.toLowerCase().includes(word));
-    set_filter_state(filtered);
+
+    if (!filtered.length) {
+      const user_filtered = user.filter((item) =>
+        item.email.toLowerCase().includes(word.toLowerCase())
+      );
+      console.log("userFilter:", user_filtered);
+
+      set_filter_state(user_filtered);
+      console.log("filterState:", filter_state);
+    } else {
+      set_filter_state(filtered);
+    }
   };
+
+  console.log("filterState:", filter_state);
 
   const searchHandler = (e) => {
     if (e.key === "Enter") {
@@ -199,7 +209,8 @@ const Main = ({ todo, user }) => {
   useEffect(() => {
     let my_sort_data = [];
     if (sort_type.value === "contact") {
-      const current_filter_state = [...filter_user_state];
+      const current_filter_state = [...filter_state];
+
       if (sort_type.type === "asc") {
         my_sort_data = current_filter_state.sort(({ email: a }, { email: b }) =>
           compareFn(a, b)
@@ -211,11 +222,12 @@ const Main = ({ todo, user }) => {
       }
     }
     set_sort_user_data(my_sort_data);
+
     setCurrentPage(1);
-  }, [filter_user_state, sort_type]);
+  }, [filter_state, sort_type]);
 
   return (
-    <div className="bg-white m-auto my-7 rounded-xl px-4  xl:w-[1258px] ">
+    <div className="bg-white m-auto my-7 rounded-xl px-4   xl:w-[1258px] ">
       <Navbar
         search={search}
         changeHandler={changeHandler}
@@ -240,7 +252,7 @@ const Main = ({ todo, user }) => {
         set_paginate_handler={set_paginate_handler}
         all_page={all_page}
         currentPage={currentPage}
-        todo={todo}
+        todo={filter_state}
         navigate_num={navigate_num}
         arrayOfCurrentPages={arrayOfCurrentPages}
         search={search}
