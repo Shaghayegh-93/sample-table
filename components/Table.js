@@ -72,7 +72,7 @@ const Table = ({
   return (
     <div className="flex flex-col px-2  rounded-2xl pb-6 w-full">
       <div className="overflow-x-auto sm:rounded-lg rounded-2xl border border-[#E0E7ED] 	">
-        <div className="inline-block  ">
+        <div className="inline-block  bg-[#F9F9F9s]">
           <div className=" overflow-hidden ">
             <table className="  w-full divide-y divide-gray-200 table-fixed  ">
               <TableHeadItem data={theadData} toggleAllData={toggleAllData} />

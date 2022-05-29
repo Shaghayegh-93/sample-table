@@ -20,17 +20,25 @@ const TableHeadItem = ({ data, toggleAllData }) => (
           <th
             scope="col"
             className={`${
-              item.name === "Contact" ? "hidden md:table-cell  " : ""
-            } ${item.name === "User" ? "w-[155.5px] h-14" : ""} ${
-              item.name === "To-Do" ? "w-[155.5px] h-14" : ""
+              item.name === "Contact"
+                ? "hidden md:table-cell  md:w-[282px] md:m-w-[314px]  "
+                : ""
+            } ${
+              item.name === "User"
+                ? "w-[140px] h-14 md:w-[282px] md:m-w-[314px]"
+                : ""
+            } ${
+              item.name === "To-Do"
+                ? "w-[140px] h-14 md:w-[282px] md:m-w-[314px]"
+                : ""
             }
             ${item.name === "Completed" ? "w-[90px] h-14" : ""}
             ${
-              item.name === "Action" ? "w-[81px] h-14" : ""
+              item.name === "Action" ? "w-[81px] h-14 md:w-[136px] " : ""
             }whitespace-nowrap   text-xs font-semibold tracking-wider text-left text-gray-700 py-4 px-3 gap-[10px]   `}
             key={item.path}
           >
-            <div className="flex items-center justify-between w-full ">
+            <div className="flex items-center justify-between  w-full ">
               {item.name}
               <div> {item.icon}</div>
             </div>
@@ -40,9 +48,16 @@ const TableHeadItem = ({ data, toggleAllData }) => (
             scope="col"
             className={`${
               item.name === "Contact"
-                ? "hidden md:table-cell  w-[314.67px] h-14"
+                ? "hidden md:table-cell  md:w-[282px] md:m-w-[314px] h-14"
                 : ""
-            } whitespace-nowrap   py-4 px-3  text-xs font-semibold tracking-wider text-left text-gray-700 uppercase justify-between    `}
+            }${
+              item.name === "User"
+                ? "w-[140px] h-14 md:w-[282px] md:m-w-[314px]"
+                : ""
+            }  ${
+              item.name === "Completed" ? "w-[90px] h-14 md:w-[113px]" : ""
+            }${item.name === "Action" ? "w-[81px] h-14 md:w-[84px] " : ""}
+             whitespace-nowrap   py-4 px-3  text-xs font-semibold tracking-wider text-left text-gray-700 uppercase     `}
             key={item.path}
           >
             {item.name}
