@@ -11,6 +11,9 @@
   .svgColor path {
     fill: #000;
   }
+  .paginatIconColor:hover path {
+    fill: #fff;
+  }
 }
 @font-face {
   font-family: "Inter";
