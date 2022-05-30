@@ -6,7 +6,6 @@ import { useState, useEffect } from "react";
 
 const Main = ({ todo, user }) => {
   const [paginated_data, set_paginated_data] = useState([]);
-  console.log("paginatedData:", paginated_data);
   const [selectedToDo, setSelectedToDo] = useState([]);
 
   const [sort_type, set_sort_type] = useState(
@@ -20,17 +19,16 @@ const Main = ({ todo, user }) => {
     }
   );
   const [currentPage, setCurrentPage] = useState(1);
-  // console.log("currentpage:", currentPage);
+
   // filter and sort todo jason
   const [filter_state, set_filter_state] = useState(todo);
 
-  // console.log("filterState:", filter_state);
   const [sort_data, set_sort_data] = useState(filter_state);
-  // console.log("sortData", sort_data);
+  console.log("sort_data:", sort_data);
+
   const [filter_user_state, set_filter_user_state] = useState(user);
-  console.log("filterUser:", filter_user_state);
   const [sort_user_data, set_sort_user_data] = useState(filter_user_state);
-  console.log("sortUser:", sort_user_data);
+
   // pagination
   const [arrayOfCurrentPages, setArrayOfCurrentPages] = useState([]); // state to diplay first,last and couple between pages
   const count_page = 10;
@@ -71,12 +69,9 @@ const Main = ({ todo, user }) => {
 
     // const index =
   };
-  // console.log("selectedToDo: ", selectedToDo);
 
   // filter and sort json user
 
-  // console.log("navigate_num:", navigate_num.length);
-  // console.log("allPage:", all_page);
   useEffect(() => {
     const next_page = currentPage * count_page;
     const prev_page = (currentPage - 1) * count_page;
@@ -144,19 +139,18 @@ const Main = ({ todo, user }) => {
     const filtered = todo.filter((td) => td.title.toLowerCase().includes(word));
 
     if (!filtered.length) {
-      const user_filtered = user.filter((item) =>
-        item.email.toLowerCase().includes(word.toLowerCase())
-      );
-      console.log("userFilter:", user_filtered);
-
-      set_filter_state(user_filtered);
-      console.log("filterState:", filter_state);
+      const user_filtered = user.filter((item) => item.email.includes(word));
+      console.log("userrrrrr:", user_filtered);
+      set_filter_user_state(user_filtered);
+      const custom_data = [...paginated_data];
+      const user_filter_data = custom_data.filter((item) => {
+        return item.userId === user_filtered[0].id;
+      });
+      set_paginated_data(user_filter_data);
     } else {
       set_filter_state(filtered);
     }
   };
-
-  console.log("filterState:", filter_state);
 
   const searchHandler = (e) => {
     if (e.key === "Enter") {
@@ -220,8 +214,8 @@ const Main = ({ todo, user }) => {
           .sort(({ email: a }, { email: b }) => compareFn(a, b))
           .reverse();
       }
+      set_sort_data(my_sort_data);
     }
-    set_sort_user_data(my_sort_data);
 
     setCurrentPage(1);
   }, [filter_state, sort_type]);
@@ -236,7 +230,7 @@ const Main = ({ todo, user }) => {
         todo_state={paginated_data}
       />
       <Table
-        user={user}
+        user={filter_user_state}
         sortHandler={sortHandler}
         data={paginated_data}
         sort_type={sort_type}
@@ -248,7 +242,7 @@ const Main = ({ todo, user }) => {
         filterdTodo={filter_state}
         filter_state={filter_state}
         paginated_data={paginated_data}
-        user={user}
+        user={filter_user_state}
         set_paginate_handler={set_paginate_handler}
         all_page={all_page}
         currentPage={currentPage}

@@ -65,7 +65,7 @@ const TableRow = ({ user, todo, toggleData, selectedItems }) => {
         <span className="bg-[#F0FFF8] py-2 px-3 rounded-lg">complete</span>
       </td>
       <td className="w-20 h-[68px] md:h-14 p-4 ">
-        <div className="flex items-center justify-center gap-6 md:justify-start  ">
+        <div className="flex items-center justify-center gap-6 md:justify-center  ">
           <span className="hidden sm:block">
             <Union></Union>
           </span>
