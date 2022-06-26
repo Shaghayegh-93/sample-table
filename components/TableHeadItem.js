@@ -25,7 +25,7 @@ const TableHeadItem = ({ data, toggleAllData }) => (
                 : ""
             } ${
               item.name === "User"
-                ? "w-[140px] h-14 md:w-[282px] md:m-w-[314px]"
+                ? "w-[140px] h-14 md:w-[282px] md:m-w-[314px] md:table-cell "
                 : ""
             } ${
               item.name === "To-Do"
@@ -52,12 +52,12 @@ const TableHeadItem = ({ data, toggleAllData }) => (
                 : ""
             }${
               item.name === "User"
-                ? "w-[140px] h-14 md:w-[282px] md:m-w-[314px]"
+                ? "w-[140px] h-14 md:w-[282px] md:m-w-[314px] md:table-cell  "
                 : ""
             }  ${
               item.name === "Completed" ? "w-[90px] h-14 md:w-[113px]" : ""
             }${item.name === "Action" ? "w-[81px] h-14 md:w-[84px] " : ""}
-             whitespace-nowrap   py-4 px-3  text-xs font-semibold tracking-wider text-center text-gray-700 uppercase     `}
+             whitespace-nowrap   py-4 px-3  text-xs font-semibold tracking-wider text-left text-gray-700 uppercase     `}
             key={item.path}
           >
             {item.name}
