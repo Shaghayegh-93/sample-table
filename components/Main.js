@@ -24,10 +24,8 @@ const Main = ({ todo, user }) => {
   const [filter_state, set_filter_state] = useState(todo);
 
   const [sort_data, set_sort_data] = useState(filter_state);
-  console.log("sort_data:", sort_data);
 
   const [filter_user_state, set_filter_user_state] = useState(user);
-  const [sort_user_data, set_sort_user_data] = useState(filter_user_state);
 
   // pagination
   const [arrayOfCurrentPages, setArrayOfCurrentPages] = useState([]); // state to diplay first,last and couple between pages
@@ -66,8 +64,6 @@ const Main = ({ todo, user }) => {
     } else {
       setSelectedToDo([]);
     }
-
-    // const index =
   };
 
   // filter and sort json user
@@ -75,9 +71,11 @@ const Main = ({ todo, user }) => {
   useEffect(() => {
     const next_page = currentPage * count_page;
     const prev_page = (currentPage - 1) * count_page;
+
     let data = sort_data.slice(prev_page, next_page);
     set_paginated_data(data);
   }, [sort_data, currentPage]);
+
   // pagination
   useEffect(() => {
     let tempNumberOfPage = [...arrayOfCurrentPages];
@@ -139,14 +137,19 @@ const Main = ({ todo, user }) => {
     const filtered = todo.filter((td) => td.title.toLowerCase().includes(word));
 
     if (!filtered.length) {
-      const user_filtered = user.filter((item) => item.email.includes(word));
-      console.log("userrrrrr:", user_filtered);
+      const user_filtered = user.filter((item) =>
+        item.email.toLowerCase().includes(word).toLowerCase()
+      );
+
       set_filter_user_state(user_filtered);
+      console.log("filterussssser:", filter_user_state);
+
       const custom_data = [...paginated_data];
       const user_filter_data = custom_data.filter((item) => {
         return item.userId === user_filtered[0].id;
       });
       set_paginated_data(user_filter_data);
+      console.log("paginatedData:", paginated_data);
     } else {
       set_filter_state(filtered);
     }
@@ -181,42 +184,8 @@ const Main = ({ todo, user }) => {
           .reverse();
       }
     }
-    // } else if (sort_type.value === "completed") {
-    //   const current_filter_state = [...filter_state];
-    //   if (sort_type.type === "asc") {
-    //     my_sort_data = current_filter_state
-    //       .sort(({ completed: a }, { completed: b }) =>
-    //         compareFn(Number(a), Number(b))
-    //       )
-    //       .reverse();
-    //   } else {
-    //     my_sort_data = current_filter_state.sort(
-    //       ({ completed: a }, { completed: b }) =>
-    //         compareFn(Number(a), Number(b))
-    //     );
-    //   }
-    // }
+
     set_sort_data(my_sort_data);
-    setCurrentPage(1);
-  }, [filter_state, sort_type]);
-
-  useEffect(() => {
-    let my_sort_data = [];
-    if (sort_type.value === "contact") {
-      const current_filter_state = [...filter_state];
-
-      if (sort_type.type === "asc") {
-        my_sort_data = current_filter_state.sort(({ email: a }, { email: b }) =>
-          compareFn(a, b)
-        );
-      } else {
-        my_sort_data = current_filter_state
-          .sort(({ email: a }, { email: b }) => compareFn(a, b))
-          .reverse();
-      }
-      set_sort_data(my_sort_data);
-    }
-
     setCurrentPage(1);
   }, [filter_state, sort_type]);
 
