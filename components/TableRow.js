@@ -45,12 +45,12 @@ const TableRow = ({ user, todo, toggleData, selectedItems }) => {
       </td>
 
       <td
-        className=" p-4 gap-2   hidden sm:block  text-left   md:h-14  "
+        className=" p-4   text-left font-normal w-40 h-[68px] md:h-[100%] md:w-[314px]   hidden sm:block      "
         key={user.id}
       >
         <div className=" py-4 flex flex-col  whitespace-nowrap  md:items-start  md:justify-center font-normal  text-[#828282] text-xs truncate">
-          <p className="leading-[18px] ">{user_name?.email}</p>
-          <p className="">{user_name?.phone}</p>
+          <p className="leading-[150%] ">{user_name?.email}</p>
+          <p className=" font-normal ">{user_name?.phone}</p>
         </div>
       </td>
 
