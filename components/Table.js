@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import TableRow from "./TableRow";
-// import { useState } from "react";
 import TableHeadItem from "./../components/TableHeadItem";
 import ArrowUp from "../public/svg/ArrowUp.svg";
 import ArrowDown from "../public/svg/ArrowDown.svg";
@@ -18,26 +17,7 @@ const Table = ({
     {
       path: "Contact",
       name: "Contact",
-      icon: (
-        <div className="flex flex-col ">
-          <ArrowUp
-            className={`cursor-pointer ${
-              sort_type.type === "asc" &&
-              sort_type.value === "contact" &&
-              "svgColor"
-            }`}
-            onClick={() => sortHandler("asc", "contact")}
-          />
-          <ArrowDown
-            className={`cursor-pointer ${
-              sort_type.type === "desc" &&
-              sort_type.value === "contact" &&
-              "svgColor"
-            }`}
-            onClick={() => sortHandler("desc", "contact")}
-          />
-        </div>
-      ),
+      icon: "",
     },
     {
       path: "To-Do",
